@@ -27,6 +27,19 @@
   - 按提示输入你注册的DockerID和密码进行登陆
   - 第一次会自动创建Hyper-V虚拟机: MoByLinuxVM 
   - 如果不报错，且右下角鲸鱼图标是白色的基本没啥问题
+  - 命令行输入 ：  docker info 查看具体信息
   
-#
+# 设置Docker镜像
+ - 可以使用阿里云镜像（需要注册阿里云账号）
+ - 容器镜像服务-镜像加速器
+ - https://*****.mirror.aliyuncs.com
+ - 开启Docker上的Basic->Advanced
+ - 编辑json配置
+       {
+        "registry-mirrors": [
+          "https://*****.mirror.aliyuncs.com"
+        ],
+        "insecure-registries": [],
+        "experimental": false
+       }
   
