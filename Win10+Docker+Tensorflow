@@ -1,0 +1,26 @@
+
+# Win10上Docker目前支持Hyper-V, 所以以下为Hyper-V相关安装配置
+
+# 下载Docker Desktop
+  - https://www.docker.com/products/docker-desktop
+  - 下载需要注册账号，如果有请忽略， 注册时有一个人机识别的按钮，需要翻墙才行
+  - [重要]先别安装 
+  
+# 查看Win10 PC上是否开启了虚拟化以及Hyper-V
+  - 虚拟化与CPU有关，Inteli3, i5, i7应该都支持的
+  - msinfo命令可以查看，或者任务管理器->性能->右下角，显示： 虚拟化：已启用
+  - 如果未启用虚拟化，可以去BIOS中开启-百度/Bing
+  - 如果未开启Hyper-V, 可以去: 启用或关闭windows功能 中开启，然后重启
+  
+
+# Hyper-V设置虚拟机路径和虚拟机硬盘存放路径
+  - [重要]
+  - 这里设置最好先于Docker安装和启动，否则启动了Docker后，再修改虚拟机硬盘路径比较麻烦，经常容易出错
+  - 你可以修改到非C盘目录等
+  
+# 安装Docker
+  - 默认即可
+  - 对于Windows Container 和 Linux Container, 不要勾选， 默认Linux Container
+  
+#
+  
