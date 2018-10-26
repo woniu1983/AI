@@ -17,4 +17,17 @@
 # Anaconda 配置安装
   - 安装Anaconda
   - 在Anaconda中安装VS Code
+
+# Anaconda安装Tensorflow
+  - 打开Anaconda Prompt 命令行
+  - 创建python3.5的环境
+    > conda create -n tensorflow-gpu python=3.5
+  - 激活这个环境
+    > activate tensorflow-gpu
+  - 安装一些科学库
+    > conda install anaconda
+  - 安装tensorflow-gpu
+    > conda install tensorflow-gpu
+ 
+  
   
