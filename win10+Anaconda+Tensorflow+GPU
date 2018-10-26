@@ -1,0 +1,20 @@
+# Win10 环境下安装Tensorflow
+
+# 环境
+  - Win10 Pro x64
+  - Nvidia GF1080Ti GPU
+  - Tensorflow v 1.11
+  - CUDA v9.0 for win10 x64 : cuda_9.0.176_win10_network.exe
+  - cuDNN v7.3 for CUDA9 : cudnn-9.0-windows10-x64-v7.3.0.29.zip
+  - Anaconda 最新版， 用这个来设置开发环境，包括python
+  
+# 安装Nvidia Driver + CUDA
+  - 下载安装Nvidia Driver
+  - 安装CUDA
+  - 安装cuDNN
+     将lib, include, bin下面的文件复制到CUDA相关文件夹下
+  
+# Anaconda 配置安装
+  - 安装Anaconda
+  - 在Anaconda中安装VS Code
+  
