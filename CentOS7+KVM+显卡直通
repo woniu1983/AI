@@ -1,0 +1,42 @@
+# 1.确认内核是否支持iommu
+  - cat /proc/cmdline | grep iommu
+    如果没有输出结果，添加intel_iommu=on到grub的启动参数,需要重启。
+
+  - 添加intel_iommu=on到grub的启动参数
+    sudo view /etc/default/grub 
+    GRUB_TIMEOUT=5
+    GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+    GRUB_DEFAULT=saved
+    GRUB_DISABLE_SUBMENU=true
+    GRUB_TERMINAL_OUTPUT="console"
+    GRUB_CMDLINE_LINUX="nouveau.modeset=0 rd.driver.blacklist=nouveau nomodeset rhgb quiet xhci-hcd.quirks=262144 kvm-intel.nested=1 intel_iommu=on"
+    GRUB_DISABLE_RECOVERY="true"
+    
+  - 更新grub.cfg文件
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+    sudo grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg       CentOS7上看到是这个启动文件
+ 
+  - 重启
+  
+  
+  # 2. 使用dmesg | grep IOMMU 或dmesg | grep -e DMAR -e IOMMU检查VT-d（AMD芯片时是 IOV）是否工作。若没有相应输出，需要重新检查之前的步骤
+  
+  
+  # 3. 查看pci设备信息， 如下以Nvidia为例
+      lspci -nn | grep NVIDIA
+      
+  # 4. 查看驱动
+       lspci -vv -s 01:00.0 | grep driver   (为显卡绑定的默认驱动)
+       lspci -vv -s 01:00.1 | grep driver   (显卡上附带的集成声卡的默认驱动)
+       
+  # 5. 禁用显卡默认驱动
+       禁用nouveau， snd_hda_intel，将其添加到/etc/modprobe.d/blacklist.conf文件最后
+       blacklist nouveau
+       blacklist snd_hda_intel
+       
+       去掉禁用blacklist radeonfb
+       sudo vi /usr/lib/modprobe.d/dist-blacklist.conf
+       注释下面两行
+       #blacklist radeonfb    AMD GPU
+       #blacklist radeonfb    Nvdia GPU
+       加上一行options nouveau modeset=0
