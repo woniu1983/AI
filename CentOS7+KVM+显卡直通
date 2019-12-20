@@ -31,12 +31,24 @@
        
   # 5. 禁用显卡默认驱动
        禁用nouveau， snd_hda_intel，将其添加到/etc/modprobe.d/blacklist.conf文件最后
-       blacklist nouveau
-       blacklist snd_hda_intel
+          blacklist nouveau
+          blacklist snd_hda_intel
        
-       去掉禁用blacklist radeonfb
-       sudo vi /usr/lib/modprobe.d/dist-blacklist.conf
+       去掉禁用当前显卡禁用
+          sudo vi /usr/lib/modprobe.d/dist-blacklist.conf
        注释下面两行
-       #blacklist radeonfb    AMD GPU
-       #blacklist radeonfb    Nvdia GPU
-       加上一行options nouveau modeset=0
+          #blacklist radeonfb    AMD GPU
+          #blacklist radeonfb    Nvdia GPU
+       加上一行
+          options nouveau modeset=0
+          
+       重新建立initramfs image文件
+          mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.bak
+          dracut /boot/initramfs-$(uname -r).img $(uname -r)
+          
+       重启系统
+       
+       
+      继续：
+         https://blog.lofyer.org/pass-host-gpu-to-guest-via-qemu-ncursescurses/#1_See_what_we_have_got_now
+          
